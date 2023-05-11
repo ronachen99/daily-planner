@@ -26,6 +26,7 @@ $(function () {
     taskContainerEl.append(divContainer);
   }
 
+  // ! THERE IS A BUUGGGGGGGGG AHHHHHHHHH!!!!!!
   // Identifies the current hour in 24hr reading
   var currentHour = dayjs().format('HH');
   // Compare the hour reading with the current time block
