@@ -26,4 +26,17 @@ $(function () {
     taskContainerEl.append(divContainer);
   }
 
+  // Identifies the current hour in 24hr reading
+  var currentHour = dayjs().format('HH');
+// Compare the hour reading with the current time block
+  function changeColor(hour) {
+    console.log(hour);
+    if (hour > currentHour) {
+      divContainer.addClass('future');
+    } else if (hour === currentHour) {
+      divContainer.addClass('present');
+    } else {
+      divContainer.addClass('past');
+    }
+  }
 });
