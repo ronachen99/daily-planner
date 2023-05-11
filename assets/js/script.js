@@ -1,23 +1,24 @@
 $(function () {
-  // Gets the current time and displays it in the header
+  // Retrieve time using dayjs and display it in the header
   function displayCurrentTime() {
     var currentDayEl = $('#currentDay');
     var now = dayjs().format('dddd, MMMM D, YYYY h:mm:ss A');
     currentDayEl.text(now);
   }
 
-  // Updates the time every one second
+  // Update the retrieved time every one second
   setInterval(displayCurrentTime, 1000);
 
-  // Makes the container for each time block from 8AM to 8PM
+  // Create the container for each time block from 8AM to 8PM
   var hours = ['08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'];
   for (var x = 0; x < hours.length; x++) {
     var taskContainerEl = $('#task-container');
     var divContainer = $('<div>');
-    divContainer.attr('id', hours[x]);
-    // Adds classes to the newly created div, including the class responsible for the color change
+    // Add classes to the newly created div, including the class responsible for the color change
     divContainer.addClass('row', 'time-block', changeColor(hours[x]));
-    // Adds the time label and renders the tasks that were set to each time block, also provives an unique hour/time id to each button 
+    // Add an id for the div container and set it to the hour within the array
+    divContainer.attr('id', hours[x]);
+    // Add the time label and render the tasks that were set to each time block, then provive an unique hour id to each button 
     divContainer.html(`<div class="col-2 col-md-1 hour text-center py-3">${changeHour(hours[x])}</div>
    <textarea class="col-8 col-md-10 description" rows="3">${localStorage.getItem(hours[x]) || ''}</textarea>
    <button class="btn saveBtn col-2 col-md-1" aria-label="save" id='${hours[x]}'>
@@ -27,10 +28,10 @@ $(function () {
     taskContainerEl.append(divContainer);
   }
 
-  // Compares the current hour reading with the current time block, that were previously determined
+  // Compare the current hour reading to the time blocks
   function changeColor(hour) {
-  // Identifies the current hour in a 24hr reading format
-  var currentHour = dayjs().format('HH');
+    // Identify the current hour in a 24hr reading format
+    var currentHour = dayjs().format('HH');
     if (hour > currentHour) {
       divContainer.addClass('future');
     } else if (hour === currentHour) {
@@ -40,41 +41,41 @@ $(function () {
     }
   }
 
-  // Replaces hour into XX AM or XX PM format on the webpage
+  // Replace hour into X:00 AM or X:00 PM format on the webpage
   function changeHour(hour) {
     switch (hour) {
       case '08':
-        return '8 AM';
+        return '8:00 AM';
       case '09':
-        return '9 AM';
+        return '9:00 AM';
       case '10':
-        return '10 AM';
+        return '10:00 AM';
       case '11':
-        return '11 AM';
+        return '11:00 AM';
       case '12':
-        return '12 PM';
+        return '12:00 PM';
       case '13':
-        return '1 PM';
+        return '1:00 PM';
       case '14':
-        return '2 PM';
+        return '2:00 PM';
       case '15':
-        return '3 PM';
+        return '3:00 PM';
       case '16':
-        return '4 PM';
+        return '4:00 PM';
       case '17':
-        return '5 PM';
+        return '5:00 PM';
       case '18':
-        return '6 PM';
+        return '6:00 PM';
       case '19':
-        return '7 PM';
+        return '7:00 PM';
       case '20':
-        return '8 PM';
+        return '8:00 PM';
     }
   }
 
-  // Saves tasks on click into the local storage
+  // Save tasks on click into the local storage
   var saveButtonEl = $('.saveBtn');
   saveButtonEl.on('click', function () {
-    localStorage.setItem(this.id, this.previousElementSibling.value)
+    localStorage.setItem($(this).parent().attr('id'), $(this).siblings('.description').val())
   })
 });
