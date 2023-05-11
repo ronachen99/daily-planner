@@ -40,7 +40,7 @@ $(function () {
     }
   }
 
-  // Replaces the hour into XX AM or XX PM  
+  // Replaces hour into XX AM or XX PM format
   function changeHour(hour) {
     switch (hour) {
       case '08':
@@ -71,4 +71,10 @@ $(function () {
         return '8 PM';
     }
   }
+
+  // Saves the inputted tasks on click into the local storage
+  var saveButtonEl = $('.saveBtn');
+  saveButtonEl.on('click', function () {
+    localStorage.setItem(this.id, this.previousElementSibling.value)
+  })
 });
