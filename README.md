@@ -18,8 +18,8 @@ The purpose of creating this repository is to build a website that enables indiv
 
 ## Demonstration
 
-Here is a short demonstration of the website:
-![Demonstration of a user going through an interactive time table by entering important tasks, saving it, and starting over.](ENTERPATH)
+Here is a short demonstration of the website: \
+![Demonstration of a user going through an interactive time table by entering important tasks, saving it, and starting over.](./assets/images/Work%20Day%20Scheduler.gif)
 
 <br>
 
