@@ -28,7 +28,7 @@ $(function () {
 
   // Identifies the current hour in 24hr reading
   var currentHour = dayjs().format('HH');
-// Compare the hour reading with the current time block
+  // Compare the hour reading with the current time block
   function changeColor(hour) {
     console.log(hour);
     if (hour > currentHour) {
@@ -37,6 +37,38 @@ $(function () {
       divContainer.addClass('present');
     } else {
       divContainer.addClass('past');
+    }
+  }
+
+  // Replaces the hour into XX AM or XX PM  
+  function changeHour(hour) {
+    switch (hour) {
+      case '08':
+        return '8 AM';
+      case '09':
+        return '9 AM';
+      case '10':
+        return '10 AM';
+      case '11':
+        return '11 AM';
+      case '12':
+        return '12 PM';
+      case '13':
+        return '1 PM';
+      case '14':
+        return '2 PM';
+      case '15':
+        return '3 PM';
+      case '16':
+        return '4 PM';
+      case '17':
+        return '5 PM';
+      case '18':
+        return '6 PM';
+      case '19':
+        return '7 PM';
+      case '20':
+        return '8 PM';
     }
   }
 });
